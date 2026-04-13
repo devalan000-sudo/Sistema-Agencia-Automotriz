@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SistemaAgenciaAutomotriz.Datos/SistemaAgenciaAutomotriz.Datos.csproj" />
+  <Project Path="SistemaAgenciaAutomotriz.Dominio/SistemaAgenciaAutomotriz.Dominio.csproj" />
+  <Project Path="SistemaAgenciaAutomotriz.Presentacion/SistemaAgenciaAutomotriz.Presentacion.csproj" />
+</Solution>

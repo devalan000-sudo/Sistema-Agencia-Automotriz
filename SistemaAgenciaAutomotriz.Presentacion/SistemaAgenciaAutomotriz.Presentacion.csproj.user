@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Formularios\FormCategoriaEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormCategoriaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormClienteEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormClienteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormCuentaPorCobrarList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormProductoEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormProductoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormUsuarioEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormUsuarioList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormVehiculoEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormVehiculoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormVehiculoVendidoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormVentaAccesorios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\FormVentaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

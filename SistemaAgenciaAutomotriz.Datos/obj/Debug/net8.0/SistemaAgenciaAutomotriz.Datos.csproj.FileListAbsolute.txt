@@ -1,0 +1,17 @@
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\bin\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.deps.json
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\bin\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.runtimeconfig.json
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\bin\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.dll
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\bin\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.pdb
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\bin\Debug\net8.0\SistemaAgenciaAutomotriz.Dominio.dll
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\bin\Debug\net8.0\SistemaAgenciaAutomotriz.Dominio.pdb
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.csproj.AssemblyReference.cache
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.AssemblyInfoInputs.cache
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.AssemblyInfo.cs
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.csproj.CoreCompileInputs.cache
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaA.DE2CF5D5.Up2Date
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.dll
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\refint\SistemaAgenciaAutomotriz.Datos.dll
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.pdb
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.genruntimeconfig.cache
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\ref\SistemaAgenciaAutomotriz.Datos.dll
