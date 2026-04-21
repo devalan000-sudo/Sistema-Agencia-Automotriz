@@ -4,6 +4,11 @@ using SistemaAgenciaAutomotriz.Dominio.Enumeradores;
 using SistemaAgenciaAutomotriz.Presentacion.Helpers;
 using SistemaAgenciaAutomotriz.Dominio.Interfaces;
 using SistemaAgenciaAutomotriz.Dominio.ValueObjects;
+using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace SistemaAgenciaAutomotriz.Presentacion.Formularios;
 
@@ -67,15 +72,18 @@ public partial class FormVenta : Form
 
     private void FormatearGridVehiculos()
     {
-        dgvVehiculos.Columns["Id"].Visible = false;
-        dgvVehiculos.Columns["VIN"].Width = 180;
-        dgvVehiculos.Columns["Marca"].Width = 120;
-        dgvVehiculos.Columns["Modelo"].Width = 160;
-        dgvVehiculos.Columns["Year"].Width = 70;
-        dgvVehiculos.Columns["Color"].Width = 100;
-        dgvVehiculos.Columns["Precio"].Width = 120;
-        dgvVehiculos.Columns["Precio"].DefaultCellStyle.Format = "C2";
-        dgvVehiculos.Columns["Estado"].Width = 120;
+        if(dgvVehiculos.Columns["Id"] != null) dgvVehiculos.Columns["Id"].Visible = false;
+        if(dgvVehiculos.Columns["VIN"] != null) dgvVehiculos.Columns["VIN"].Width = 180;
+        if(dgvVehiculos.Columns["Marca"] != null) dgvVehiculos.Columns["Marca"].Width = 120;
+        if(dgvVehiculos.Columns["Modelo"] != null) dgvVehiculos.Columns["Modelo"].Width = 160;
+        if(dgvVehiculos.Columns["Year"] != null) dgvVehiculos.Columns["Year"].Width = 70;
+        if(dgvVehiculos.Columns["Color"] != null) dgvVehiculos.Columns["Color"].Width = 100;
+        if(dgvVehiculos.Columns["Precio"] != null) 
+        {
+            dgvVehiculos.Columns["Precio"].Width = 120;
+            dgvVehiculos.Columns["Precio"].DefaultCellStyle.Format = "C2";
+        }
+        if(dgvVehiculos.Columns["Estado"] != null) dgvVehiculos.Columns["Estado"].Width = 120;
 
         foreach (DataGridViewRow row in dgvVehiculos.Rows)
         {
@@ -87,7 +95,7 @@ public partial class FormVenta : Form
     private void ActualizarDisponibles()
     {
         _vehiculos = _vehiculos.Where(v => v.Estatus == (int)EstatusVehiculo.Disponible).ToList();
-        dgvVehiculos.DataSource = _vehiculos.Select(v => new
+        var listaVacia = _vehiculos.Select(v => new
         {
             v.Id,
             v.VIN,
@@ -98,6 +106,7 @@ public partial class FormVenta : Form
             v.Precio,
             Estado = ((EstatusVehiculo)v.Estatus).ToString()
         }).ToList();
+        dgvVehiculos.DataSource = listaVacia;
         FormatearGridVehiculos();
     }
 
@@ -161,14 +170,10 @@ public partial class FormVenta : Form
 
         if (cmbTipoPago.SelectedIndex == 1) // Financiamiento
         {
-            decimal enganche = decimal.TryParse(txtEnganche.Text, out var e) ? e : 0;
-            int plazo = int.TryParse(txtPlazo.Text, out var p) ? p : 0;
-            decimal tasa = decimal.TryParse(txtTasa.Text, out var t) ? t : 0;
-
             var financiamiento = new DatosFinanciamiento(
-                enganche,
-                plazo,
-                tasa,
+                UIParserHelper.ParseDecimal(txtEnganche.Text),
+                UIParserHelper.ParseInt(txtPlazo.Text),
+                UIParserHelper.ParseDecimal(txtTasa.Text),
                 chkSeguro.Checked,
                 precioVehiculo + _ventaCalculadora.CalcularIVA(precioVehiculo)
             );
@@ -189,7 +194,7 @@ public partial class FormVenta : Form
                 lblMensualidad.Visible = false;
             }
         }
-        else
+        else // Contado
         {
             TotalesVenta totales = _ventaCalculadora.CalcularTotales(precioVehiculo, carritoVacioParaHelper);
             
@@ -202,41 +207,17 @@ public partial class FormVenta : Form
 
     private void CmbTipoPago_SelectedIndexChanged(object? sender, EventArgs e)
     {
-        bool esFinanciamiento = cmbTipoPago.SelectedIndex == 1;
-        pnlFinanciamiento.Visible = esFinanciamiento;
+        pnlFinanciamiento.Visible = cmbTipoPago.SelectedIndex == 1;
         CalcularTotales();
     }
 
-    private void TxtEnganche_TextChanged(object? sender, EventArgs e)
-    {
-        CalcularTotales();
-    }
-
-    private void TxtPlazo_TextChanged(object? sender, EventArgs e)
-    {
-        CalcularTotales();
-    }
-
-    private void TxtTasa_TextChanged(object? sender, EventArgs e)
-    {
-        CalcularTotales();
-    }
+    private void TxtEnganche_TextChanged(object? sender, EventArgs e) => CalcularTotales();
+    private void TxtPlazo_TextChanged(object? sender, EventArgs e) => CalcularTotales();
+    private void TxtTasa_TextChanged(object? sender, EventArgs e) => CalcularTotales();
 
     private void TxtClienteId_TextChanged(object? sender, EventArgs e)
     {
-        if (int.TryParse(txtClienteId.Text.Trim(), out int id))
-        {
-            var c = _clientesLista.FirstOrDefault(x => x.Id == id);
-            if (c != null)
-            {
-                lblNombreCliente.Text = $"{c.Nombre} (RFC: {c.RFC})";
-                lblNombreCliente.ForeColor = Color.Green;
-                return;
-            }
-        }
-        
-        lblNombreCliente.Text = "Cliente no encontrado";
-        lblNombreCliente.ForeColor = Color.Red;
+        UIParserHelper.BuscarYMostrarClienteVisualmente(txtClienteId.Text, _clientesLista, lblNombreCliente, txtRFC);
     }
 
     private void BtnLimpiar_Click(object? sender, EventArgs e)
@@ -253,98 +234,110 @@ public partial class FormVenta : Form
 
     private async void BtnVender_Click(object? sender, EventArgs e)
     {
-        if (_vehiculoSeleccionado == null)
-        {
-            MessageBox.Show("Seleccione un vehículo para la venta", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
-
-        var tipoPagoSel = (TipoPago)(cmbTipoPago.SelectedIndex + 1);
-        int? clienteId = null;
-        if (int.TryParse(txtClienteId.Text.Trim(), out int cid))
-        {
-            var cli = _clientesLista.FirstOrDefault(x => x.Id == cid);
-            if (cli != null)
-            {
-                clienteId = cid;
-            }
-        }
-
-        if (tipoPagoSel == TipoPago.Financiamiento && clienteId == null)
-        {
-            MessageBox.Show("Debe ingresar un ID de Cliente válido para procesar una venta por Financiamiento.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
+        if (!ValidarVentaPrevia()) return;
 
         try
         {
-            var tipoPago = (TipoPago)(cmbTipoPago.SelectedIndex + 1);
-            var metodoPago = (MetodoPago)(cmbMetodoPago.SelectedIndex + 1);
-            decimal precioVehiculo = _vehiculoSeleccionado.Precio;
-
-            decimal enganche = 0, montoFinanciado = 0, tasa = 0, mensualidad = 0;
-            int plazo = 0;
-            bool requiereSeguro = false;
-            TotalesVenta totales;
-            var carritoVacioParaHelper = new List<VentaDetalle>();
-
-            if (tipoPago == TipoPago.Financiamiento)
-            {
-                enganche = decimal.TryParse(txtEnganche.Text, out var e1) ? e1 : 0;
-                plazo = int.TryParse(txtPlazo.Text, out var p) ? p : 0;
-                tasa = decimal.TryParse(txtTasa.Text, out var t) ? t : 0;
-                requiereSeguro = chkSeguro.Checked;
-
-                decimal subtotalEsperado = precioVehiculo;
-                decimal ivaEsperado = _ventaCalculadora.CalcularIVA(subtotalEsperado);
-                decimal totalEsperado = subtotalEsperado + ivaEsperado;
-
-                var financiamiento = new DatosFinanciamiento(enganche, plazo, tasa, requiereSeguro, totalEsperado);
-                totales = _ventaCalculadora.CalcularTotalesConFinanciamiento(precioVehiculo, carritoVacioParaHelper, financiamiento);
-
-                montoFinanciado = financiamiento.MontoFinanciado;
-                mensualidad = totales.Mensualidad ?? 0;
-            }
-            else
-            {
-                totales = _ventaCalculadora.CalcularTotales(precioVehiculo, carritoVacioParaHelper);
-            }
-
-            var venta = new Venta
-            {
-                ClienteId = clienteId,
-                VehiculoId = _vehiculoSeleccionado?.Id,
-                UsuarioId = SesionActual.UsuarioLogueado!.Id,
-                MetodoPago = metodoPago,
-                TipoPagoVEH = tipoPago,
-                Enganche = enganche,
-                MontoFinanciado = montoFinanciado,
-                PlazoMeses = plazo,
-                TasaInteres = tasa,
-                Mensualidad = mensualidad,
-                RequiereSeguro = requiereSeguro,
-                Subtotal = totales.Subtotal,
-                IVA = totales.IVA,
-                Total = totales.Total
-            };
-
-            await _ventaServicio.CrearVentaAsync(venta, carritoVacioParaHelper);
-
-            string mensaje = $"Venta realizada exitosamente!\n\nFolio: {venta.Id}\nVehículo: {_vehiculoSeleccionado?.Marca} {_vehiculoSeleccionado?.Modelo}\nTotal: {venta.Total:C2}";
-            
-            if (tipoPago == TipoPago.Financiamiento)
-            {
-                mensaje += $"\n\nFinanciamiento:\nEnganche: {enganche:C2}\nPlazo: {plazo} meses\nMensualidad: {mensualidad:C2}";
-            }
-
-            MessageBox.Show(mensaje, "Venta Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            BtnLimpiar_Click(null, EventArgs.Empty);
-            CargarDatos();
+            var venta = ConstruirEntidadVenta();
+            await _ventaServicio.CrearVentaAsync(venta, new List<VentaDetalle>());
+            MostrarReciboYReiniciar(venta);
         }
         catch (Exception ex)
         {
             MessageBox.Show($"Error al realizar la venta: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+    }
+
+    #region Metodos Extrapolados de Refactorizacion (SOLID)
+
+    private bool ValidarVentaPrevia()
+    {
+        if (_vehiculoSeleccionado == null)
+        {
+            MessageBox.Show("Seleccione un vehículo para la venta", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        var tipoPagoSel = (TipoPago)(cmbTipoPago.SelectedIndex + 1);
+        int? clienteId = UIParserHelper.ParseIntNullable(txtClienteId.Text);
+        var cli = _clientesLista.FirstOrDefault(x => x.Id == clienteId);
+
+        if (tipoPagoSel == TipoPago.Financiamiento && cli == null)
+        {
+            MessageBox.Show("Debe ingresar un ID de Cliente válido para procesar una venta por Financiamiento.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+        return true;
+    }
+
+    private Venta ConstruirEntidadVenta()
+    {
+        var tipoPago = (TipoPago)(cmbTipoPago.SelectedIndex + 1);
+        var metodoPago = (MetodoPago)(cmbMetodoPago.SelectedIndex + 1);
+        int? clienteId = UIParserHelper.ParseIntNullable(txtClienteId.Text);
+        var cli = _clientesLista.FirstOrDefault(x => x.Id == clienteId);
+
+        decimal enganche = 0, montoFinanciado = 0, tasa = 0, mensualidad = 0;
+        int plazo = 0;
+        bool requiereSeguro = false;
+        TotalesVenta totales;
+        
+        if (tipoPago == TipoPago.Financiamiento)
+        {
+            enganche = UIParserHelper.ParseDecimal(txtEnganche.Text);
+            plazo = UIParserHelper.ParseInt(txtPlazo.Text);
+            tasa = UIParserHelper.ParseDecimal(txtTasa.Text);
+            requiereSeguro = chkSeguro.Checked;
+
+            decimal totalEsperado = _vehiculoSeleccionado!.Precio + _ventaCalculadora.CalcularIVA(_vehiculoSeleccionado.Precio);
+            var financiamiento = new DatosFinanciamiento(enganche, plazo, tasa, requiereSeguro, totalEsperado);
+            
+            totales = _ventaCalculadora.CalcularTotalesConFinanciamiento(_vehiculoSeleccionado.Precio, new List<VentaDetalle>(), financiamiento);
+            montoFinanciado = financiamiento.MontoFinanciado;
+            mensualidad = totales.Mensualidad ?? 0;
+        }
+        else
+        {
+            totales = _ventaCalculadora.CalcularTotales(_vehiculoSeleccionado!.Precio, new List<VentaDetalle>());
+        }
+
+        return new Venta
+        {
+            ClienteId = cli?.Id,
+            VehiculoId = _vehiculoSeleccionado.Id,
+            UsuarioId = SesionActual.UsuarioLogueado!.Id,
+            MetodoPago = metodoPago,
+            TipoPagoVEH = tipoPago,
+            Enganche = enganche,
+            MontoFinanciado = montoFinanciado,
+            PlazoMeses = plazo,
+            TasaInteres = tasa,
+            Mensualidad = mensualidad,
+            RequiereSeguro = requiereSeguro,
+            Subtotal = totales.Subtotal,
+            IVA = totales.IVA,
+            Total = totales.Total
+        };
+    }
+
+    private void MostrarReciboYReiniciar(Venta venta)
+    {
+        string mensaje = $"Venta realizada exitosamente!\n\nFolio: {venta.Id}\nVehículo: {_vehiculoSeleccionado?.Marca} {_vehiculoSeleccionado?.Modelo}\nTotal: {venta.Total:C2}";
+        if (venta.TipoPagoVEH == TipoPago.Financiamiento)
+        {
+            mensaje += $"\n\nFinanciamiento:\nEnganche: {venta.Enganche:C2}\nPlazo: {venta.PlazoMeses} meses\nMensualidad: {venta.Mensualidad:C2}";
+        }
+        MessageBox.Show(mensaje, "Venta Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        BtnLimpiar_Click(null, EventArgs.Empty);
+        CargarDatos();
+    }
+
+    #endregion
+
+    private void BtnToggleBottomBar_Click(object? sender, EventArgs e)
+    {
+        var bottomBar = this.Controls.OfType<Panel>().FirstOrDefault(p => p.Name == "pnlBottomBar");
+        if (bottomBar != null) bottomBar.Visible = !bottomBar.Visible;
     }
 }

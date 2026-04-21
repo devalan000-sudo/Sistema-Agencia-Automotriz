@@ -15,3 +15,4 @@ C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Da
 C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.pdb
 C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.genruntimeconfig.cache
 C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\ref\SistemaAgenciaAutomotriz.Datos.dll
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Datos\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Datos.sourcelink.json

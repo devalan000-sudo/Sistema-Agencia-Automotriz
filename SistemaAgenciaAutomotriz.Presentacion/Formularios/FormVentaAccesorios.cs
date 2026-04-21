@@ -77,10 +77,7 @@ public partial class FormVentaAccesorios : Form
         if(dgvProductos.Columns["Precio"] != null) dgvProductos.Columns["Precio"].DefaultCellStyle.Format = "C2";
     }
 
-    private void BtnBuscarAcc_Click(object? sender, EventArgs e)
-    {
-        BuscarProductos();
-    }
+    private void BtnBuscarAcc_Click(object? sender, EventArgs e) => BuscarProductos();
 
     private void DgvProductos_DoubleClick(object? sender, EventArgs e)
     {
@@ -160,19 +157,7 @@ public partial class FormVentaAccesorios : Form
 
     private void TxtClienteId_TextChanged(object? sender, EventArgs e)
     {
-        if (int.TryParse(txtClienteId.Text.Trim(), out int id))
-        {
-            var c = _clientesLista.FirstOrDefault(x => x.Id == id);
-            if (c != null)
-            {
-                lblNombreCliente.Text = $"{c.Nombre} (RFC: {c.RFC})";
-                lblNombreCliente.ForeColor = Color.Green;
-                return;
-            }
-        }
-        
-        lblNombreCliente.Text = "Cliente no encontrado";
-        lblNombreCliente.ForeColor = Color.Red;
+        UIParserHelper.BuscarYMostrarClienteVisualmente(txtClienteId.Text, _clientesLista, lblNombreCliente);
     }
 
     private void BtnQuitar_Click(object? sender, EventArgs e)
@@ -199,58 +184,66 @@ public partial class FormVentaAccesorios : Form
 
     private async void BtnVender_Click(object? sender, EventArgs e)
     {
-        if (_carrito.Count == 0)
-        {
-            MessageBox.Show("El carrito está vacío", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            return;
-        }
-
-        int? clienteId = null;
-        if (int.TryParse(txtClienteId.Text.Trim(), out int cid))
-        {
-            var cli = _clientesLista.FirstOrDefault(x => x.Id == cid);
-            if (cli != null) clienteId = cid;
-        }
+        if (!ValidarVentaPrevia()) return;
 
         try
         {
-            var metodoPago = (MetodoPago)(cmbMetodoPago.SelectedIndex + 1);
-            TotalesVenta totales = _ventaCalculadora.CalcularTotales(0, _carrito);
-
-            var venta = new Venta
-            {
-                ClienteId = clienteId,
-                VehiculoId = null,
-                UsuarioId = SesionActual.UsuarioLogueado!.Id,
-                MetodoPago = metodoPago,
-                TipoPagoVEH = TipoPago.Contado, // Siempre es contado
-                Enganche = 0,
-                MontoFinanciado = 0,
-                PlazoMeses = 0,
-                TasaInteres = 0,
-                Mensualidad = 0,
-                RequiereSeguro = false,
-                Subtotal = totales.Subtotal,
-                IVA = totales.IVA,
-                Total = totales.Total
-            };
-
+            var venta = ConstruirEntidadVenta();
             await _ventaServicio.CrearVentaAsync(venta, _carrito);
-
-            string mensaje = $"Cobro realizado exitosamente!\n\nFolio: {venta.Id}\nTotal: {venta.Total:C2}\nMétodo: {metodoPago}";
-            
-            MessageBox.Show(mensaje, "Venta Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            _carrito.Clear();
-            txtClienteId.Text = "";
-            lblNombreCliente.Text = "--";
-            lblNombreCliente.ForeColor = Color.Gray;
-            ActualizarCarrito();
-            CargarDatos();
+            MostrarReciboYReiniciar(venta);
         }
         catch (Exception ex)
         {
             MessageBox.Show($"Error al cobrar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
+
+    #region Metodos Extrapolados de Refactorizacion (SOLID)
+
+    private bool ValidarVentaPrevia()
+    {
+        if (_carrito.Count == 0)
+        {
+            MessageBox.Show("El carrito está vacío", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+        return true;
+    }
+
+    private Venta ConstruirEntidadVenta()
+    {
+        var metodoPago = (MetodoPago)(cmbMetodoPago.SelectedIndex + 1);
+        TotalesVenta totales = _ventaCalculadora.CalcularTotales(0, _carrito);
+        int? clienteRevisadoId = UIParserHelper.ParseIntNullable(txtClienteId.Text);
+        var cli = _clientesLista.FirstOrDefault(x => x.Id == clienteRevisadoId);
+
+        return new Venta
+        {
+            ClienteId = cli?.Id,
+            VehiculoId = null,
+            UsuarioId = SesionActual.UsuarioLogueado!.Id,
+            MetodoPago = metodoPago,
+            TipoPagoVEH = TipoPago.Contado, // Siempre es contado en accesorios
+            Enganche = 0,
+            MontoFinanciado = 0,
+            PlazoMeses = 0,
+            TasaInteres = 0,
+            Mensualidad = 0,
+            RequiereSeguro = false,
+            Subtotal = totales.Subtotal,
+            IVA = totales.IVA,
+            Total = totales.Total
+        };
+    }
+
+    private void MostrarReciboYReiniciar(Venta venta)
+    {
+        string mensaje = $"Cobro realizado exitosamente!\n\nFolio: {venta.Id}\nTotal: {venta.Total:C2}\nMétodo: {venta.MetodoPago}";
+        MessageBox.Show(mensaje, "Venta Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        BtnLimpiar_Click(null, EventArgs.Empty);
+        CargarDatos();
+    }
+
+    #endregion
 }

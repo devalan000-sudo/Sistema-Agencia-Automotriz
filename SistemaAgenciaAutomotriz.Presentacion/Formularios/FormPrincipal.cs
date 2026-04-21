@@ -42,6 +42,8 @@ public partial class FormPrincipal : Form
         _validadorService = validadorService;
         _ventaCalculadora = ventaCalculadora;
         this.IsMdiContainer = true;
+        // Mantener tamaño adaptable (quitar bloqueo de maximizar) para MVP y pruebas
+        // No fijamos tamaño mínimo ni máximo; permitir maximizar
         ConfigurarPermisos();
         ActualizarInfoUsuario();
     }

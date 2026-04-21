@@ -43,7 +43,7 @@ partial class FormReportes
         this.headerPanel.Dock = DockStyle.Top;
         this.headerPanel.Location = new Point(0, 0);
         this.headerPanel.Name = "headerPanel";
-        this.headerPanel.Size = new Size(500, 50);
+        this.headerPanel.Size = new Size(1280, 50);
 
         this.lblTitulo.Dock = DockStyle.Fill;
         this.lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
@@ -55,10 +55,10 @@ partial class FormReportes
         // Form Layout
         this.BackColor = Color.White;
 
-        this.lblTipoReporte.Location = new Point(50, 90);
+        this.lblTipoReporte.Location = new Point(50, 80);
         this.lblTipoReporte.Name = "lblTipoReporte";
-        this.lblTipoReporte.Size = new Size(150, 20);
-        this.lblTipoReporte.Text = "Seleccione el Reporte:";
+        this.lblTipoReporte.Size = new Size(150, 30);
+        this.lblTipoReporte.Text = "Reporte:";
         this.lblTipoReporte.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
 
         this.cmbTipoReporte.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -112,7 +112,7 @@ partial class FormReportes
 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
         this.AutoScaleMode = AutoScaleMode.Font;
-        this.ClientSize = new Size(500, 400);
+        this.ClientSize = new Size(1280, 720);
         this.Controls.Add(this.btnGenerar);
         this.Controls.Add(this.lblInfo);
         this.Controls.Add(this.cmbRangoTiempo);

@@ -6,6 +6,7 @@ public partial class FormVentaList : Form
     private DataGridView dgvVentas;
     private Button btnActualizar;
     private Button btnCerrar;
+    private Panel pnlAccionesVentas;
     private Panel headerPanel;
     private Label lblTitulo;
 
@@ -21,6 +22,7 @@ public partial class FormVentaList : Form
     private void InitializeComponent()
     {
         this.dgvVentas = new DataGridView();
+        this.pnlAccionesVentas = new Panel();
         this.btnActualizar = new Button();
         this.btnCerrar = new Button();
         this.headerPanel = new Panel();
@@ -61,6 +63,9 @@ public partial class FormVentaList : Form
         this.dgvVentas.EnableHeadersVisualStyles = false;
         this.dgvVentas.GridColor = System.Drawing.Color.FromArgb(230, 230, 230);
         this.dgvVentas.Location = new Point(20, 65);
+        this.dgvVentas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.dgvVentas.Name = "dgvVentas";
         this.dgvVentas.ReadOnly = true;
         this.dgvVentas.RowHeadersVisible = false;
@@ -74,7 +79,7 @@ public partial class FormVentaList : Form
         this.btnActualizar.FlatStyle = FlatStyle.Flat;
         this.btnActualizar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnActualizar.ForeColor = System.Drawing.Color.White;
-        this.btnActualizar.Location = new Point(20, 430);
+        this.btnActualizar.Location = new Point(20, 10);
         this.btnActualizar.Name = "btnActualizar";
         this.btnActualizar.Size = new Size(120, 40);
         this.btnActualizar.Text = "ACTUALIZAR";
@@ -86,7 +91,8 @@ public partial class FormVentaList : Form
         this.btnCerrar.FlatStyle = FlatStyle.Flat;
         this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnCerrar.ForeColor = System.Drawing.Color.White;
-        this.btnCerrar.Location = new Point(860, 430);
+        this.btnCerrar.Location = new Point(860, 10);
+        this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
         this.btnCerrar.Name = "btnCerrar";
         this.btnCerrar.Size = new Size(120, 40);
         this.btnCerrar.Text = "CERRAR";
@@ -96,11 +102,18 @@ public partial class FormVentaList : Form
         // Form
         this.Text = "Historial de Ventas";
         this.StartPosition = FormStartPosition.CenterParent;
-        this.ClientSize = new Size(1000, 490);
+        this.ClientSize = new System.Drawing.Size(1280, 720);
         this.FormBorderStyle = FormBorderStyle.Sizable;
 
         this.Controls.Add(this.headerPanel);
-        this.Controls.AddRange(new Control[] { dgvVentas, btnActualizar, btnCerrar });
+        this.Controls.Add(this.dgvVentas);
+        this.pnlAccionesVentas.Dock = DockStyle.Bottom;
+        this.pnlAccionesVentas.Height = 60;
+        this.pnlAccionesVentas.BackColor = System.Drawing.SystemColors.Control;
+        this.pnlAccionesVentas.Padding = new System.Windows.Forms.Padding(5);
+        this.pnlAccionesVentas.Controls.Add(this.btnActualizar);
+        this.pnlAccionesVentas.Controls.Add(this.btnCerrar);
+        this.Controls.Add(this.pnlAccionesVentas);
         ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).EndInit();
         this.ResumeLayout(false);
     }

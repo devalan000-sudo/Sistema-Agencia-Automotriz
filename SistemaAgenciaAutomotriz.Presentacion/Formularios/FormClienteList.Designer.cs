@@ -13,6 +13,7 @@ partial class FormClienteList
     private Label lblBuscar;
     private Panel headerPanel;
     private Label lblTitulo;
+    private Panel pnlAccionesClientes;
 
     protected override void Dispose(bool disposing)
     {
@@ -26,6 +27,7 @@ partial class FormClienteList
     private void InitializeComponent()
     {
         this.dgvClientes = new DataGridView();
+        this.pnlAccionesClientes = new Panel();
         this.btnNuevo = new Button();
         this.btnEditar = new Button();
         this.btnEliminar = new Button();
@@ -90,6 +92,9 @@ partial class FormClienteList
         this.dgvClientes.EnableHeadersVisualStyles = false;
         this.dgvClientes.GridColor = System.Drawing.Color.FromArgb(230, 230, 230);
         this.dgvClientes.Location = new Point(20, 125);
+        this.dgvClientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.dgvClientes.Name = "dgvClientes";
         this.dgvClientes.ReadOnly = true;
         this.dgvClientes.RowHeadersVisible = false;
@@ -103,7 +108,7 @@ partial class FormClienteList
         this.btnNuevo.FlatStyle = FlatStyle.Flat;
         this.btnNuevo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnNuevo.ForeColor = System.Drawing.Color.White;
-        this.btnNuevo.Location = new Point(20, 490);
+        this.btnNuevo.Location = new Point(20, 10);
         this.btnNuevo.Name = "btnNuevo";
         this.btnNuevo.Size = new Size(120, 40);
         this.btnNuevo.Text = "NUEVO";
@@ -116,7 +121,7 @@ partial class FormClienteList
         this.btnEditar.FlatStyle = FlatStyle.Flat;
         this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnEditar.ForeColor = System.Drawing.Color.White;
-        this.btnEditar.Location = new Point(150, 490);
+        this.btnEditar.Location = new Point(150, 10);
         this.btnEditar.Name = "btnEditar";
         this.btnEditar.Size = new Size(120, 40);
         this.btnEditar.Text = "EDITAR";
@@ -129,7 +134,7 @@ partial class FormClienteList
         this.btnEliminar.FlatStyle = FlatStyle.Flat;
         this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnEliminar.ForeColor = System.Drawing.Color.White;
-        this.btnEliminar.Location = new Point(280, 490);
+        this.btnEliminar.Location = new Point(280, 10);
         this.btnEliminar.Name = "btnEliminar";
         this.btnEliminar.Size = new Size(120, 40);
         this.btnEliminar.Text = "ELIMINAR";
@@ -142,7 +147,7 @@ partial class FormClienteList
         this.btnVerHistorial.FlatStyle = FlatStyle.Flat;
         this.btnVerHistorial.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnVerHistorial.ForeColor = System.Drawing.Color.Black;
-        this.btnVerHistorial.Location = new Point(410, 490);
+        this.btnVerHistorial.Location = new Point(410, 10);
         this.btnVerHistorial.Name = "btnVerHistorial";
         this.btnVerHistorial.Size = new Size(130, 40);
         this.btnVerHistorial.Text = "HISTORIAL";
@@ -155,21 +160,36 @@ partial class FormClienteList
         this.btnActualizar.FlatStyle = FlatStyle.Flat;
         this.btnActualizar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnActualizar.ForeColor = System.Drawing.Color.White;
-        this.btnActualizar.Location = new Point(950, 490);
+        this.btnActualizar.Location = new Point(950, 10);
+        this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
         this.btnActualizar.Name = "btnActualizar";
         this.btnActualizar.Size = new Size(120, 40);
         this.btnActualizar.Text = "ACTUALIZAR";
         this.btnActualizar.UseVisualStyleBackColor = false;
         this.btnActualizar.Cursor = Cursors.Hand;
         this.btnActualizar.Click += new EventHandler(this.btnActualizar_Click);
+
+        // Move action buttons to bottom panel
+        this.pnlAccionesClientes.Dock = DockStyle.Bottom;
+        this.pnlAccionesClientes.Height = 60;
+        this.pnlAccionesClientes.BackColor = System.Drawing.SystemColors.Control;
+        this.pnlAccionesClientes.Padding = new System.Windows.Forms.Padding(5);
+        this.pnlAccionesClientes.Controls.Add(this.btnNuevo);
+        this.pnlAccionesClientes.Controls.Add(this.btnEditar);
+        this.pnlAccionesClientes.Controls.Add(this.btnEliminar);
+        this.pnlAccionesClientes.Controls.Add(this.btnVerHistorial);
+        this.pnlAccionesClientes.Controls.Add(this.btnActualizar);
         
         this.headerPanel.Size = new Size(1190, 50);
         this.lblTitulo.Size = new Size(1190, 50);
-        this.ClientSize = new Size(1190, 600);
+        this.ClientSize = new Size(1280, 720);
         this.FormBorderStyle = FormBorderStyle.Sizable;
 
         this.Controls.Add(this.headerPanel);
-        this.Controls.AddRange(new Control[] { lblBuscar, txtBuscar, dgvClientes, btnNuevo, btnEditar, btnEliminar, btnVerHistorial, btnActualizar });
+        this.Controls.Add(lblBuscar);
+        this.Controls.Add(this.txtBuscar);
+        this.Controls.Add(this.dgvClientes);
+        this.Controls.Add(this.pnlAccionesClientes);
         ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
         this.ResumeLayout(false);
     }

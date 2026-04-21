@@ -30,6 +30,11 @@ partial class FormVentaAccesorios
     private TextBox txtClienteId;
     private Label lblNombreCliente;
 
+    private GroupBox gbCliente;
+    private GroupBox gbVenta;
+    private GroupBox gbPago;
+    private Panel pnlInformacionVenta;
+
     protected override void Dispose(bool disposing)
     {
         if (disposing && (components != null))
@@ -64,9 +69,18 @@ partial class FormVentaAccesorios
         this.txtClienteId = new TextBox();
         this.lblNombreCliente = new Label();
 
+        this.gbCliente = new GroupBox();
+        this.gbVenta = new GroupBox();
+        this.gbPago = new GroupBox();
+        this.pnlInformacionVenta = new Panel();
+
         ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.dgvCarrito)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
+        this.gbCliente.SuspendLayout();
+        this.gbVenta.SuspendLayout();
+        this.gbPago.SuspendLayout();
+        this.pnlInformacionVenta.SuspendLayout();
         this.SuspendLayout();
 
         // Header
@@ -113,132 +127,197 @@ partial class FormVentaAccesorios
         this.dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
         this.dgvProductos.Location = new Point(20, 125);
         this.dgvProductos.Name = "dgvProductos";
-        this.dgvProductos.Size = new Size(940, 200);
+        this.dgvProductos.Size = new Size(500, 480);
+        this.dgvProductos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left)));
         this.dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         this.dgvProductos.MultiSelect = false;
         this.dgvProductos.ReadOnly = true;
         this.dgvProductos.DoubleClick += new System.EventHandler(this.DgvProductos_DoubleClick);
 
-        this.lblCantidad.Location = new Point(20, 335);
+        this.lblCantidad.Location = new Point(535, 250);
         this.lblCantidad.Name = "lblCantidad";
-        this.lblCantidad.Size = new Size(70, 20);
+        this.lblCantidad.Size = new Size(95, 20);
         this.lblCantidad.Text = "Cantidad:";
+        this.lblCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
 
-        this.nudCantidad.Location = new Point(100, 335);
+        this.nudCantidad.Location = new Point(535, 275);
         this.nudCantidad.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
         this.nudCantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         this.nudCantidad.Name = "nudCantidad";
-        this.nudCantidad.Size = new Size(70, 23);
+        this.nudCantidad.Size = new Size(95, 23);
+        this.nudCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
         this.nudCantidad.Value = new decimal(new int[] { 1, 0, 0, 0 });
 
         this.lblCarrito.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-        this.lblCarrito.Location = new Point(20, 370);
+        this.lblCarrito.Location = new Point(650, 95);
         this.lblCarrito.Name = "lblCarrito";
         this.lblCarrito.Size = new Size(200, 25);
         this.lblCarrito.Text = "Carrito de Compras";
+        this.lblCarrito.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
 
         this.dgvCarrito.AllowUserToAddRows = false;
         this.dgvCarrito.AllowUserToDeleteRows = false;
         this.dgvCarrito.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        this.dgvCarrito.Location = new Point(20, 400);
+        this.dgvCarrito.Location = new Point(650, 125);
         this.dgvCarrito.Name = "dgvCarrito";
         this.dgvCarrito.ReadOnly = true;
-        this.dgvCarrito.Size = new Size(600, 150);
+        this.dgvCarrito.Size = new Size(310, 480);
+        this.dgvCarrito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left)));
 
-        // Client and Payment Section
-        this.lblCliente.Location = new Point(650, 400);
+        // Buttons Below Carrito
+        this.btnQuitar.Location = new Point(535, 330);
+        this.btnQuitar.Name = "btnQuitar";
+        this.btnQuitar.Size = new Size(95, 35);
+        this.btnQuitar.Text = "Quitar";
+        this.btnQuitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+        this.btnQuitar.UseVisualStyleBackColor = true;
+        this.btnQuitar.Click += new System.EventHandler(this.BtnQuitar_Click);
+
+        this.btnLimpiar.Location = new Point(535, 380);
+        this.btnLimpiar.Name = "btnLimpiar";
+        this.btnLimpiar.Size = new Size(95, 35);
+        this.btnLimpiar.Text = "Limpiar";
+        this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+        this.btnLimpiar.UseVisualStyleBackColor = true;
+        this.btnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
+
+        // pnlInformacionVenta (Bottom Panel)
+        this.pnlInformacionVenta.Location = new Point(20, 620);
+        this.pnlInformacionVenta.Name = "pnlInformacionVenta";
+        this.pnlInformacionVenta.Size = new Size(940, 150);
+        this.pnlInformacionVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+
+        // gbCliente
+        this.gbCliente.Controls.Add(this.lblCliente);
+        this.gbCliente.Controls.Add(this.txtClienteId);
+        this.gbCliente.Controls.Add(this.lblNombreCliente);
+        this.gbCliente.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+        this.gbCliente.Location = new Point(0, 5);
+        this.gbCliente.Name = "gbCliente";
+        this.gbCliente.Size = new Size(300, 140);
+        this.gbCliente.Text = "Datos del Cliente";
+
+        this.lblCliente.Font = new System.Drawing.Font("Segoe UI", 9F);
+        this.lblCliente.Location = new Point(15, 30);
         this.lblCliente.Name = "lblCliente";
         this.lblCliente.Size = new Size(80, 20);
         this.lblCliente.Text = "ID Cliente:";
 
-        this.txtClienteId.Location = new Point(730, 397);
+        this.txtClienteId.Font = new System.Drawing.Font("Segoe UI", 9F);
+        this.txtClienteId.Location = new Point(100, 27);
         this.txtClienteId.Name = "txtClienteId";
         this.txtClienteId.Size = new Size(100, 23);
         this.txtClienteId.TextChanged += new System.EventHandler(this.TxtClienteId_TextChanged);
 
-        this.lblNombreCliente.Location = new Point(650, 425);
-        this.lblNombreCliente.Name = "lblNombreCliente";
-        this.lblNombreCliente.Size = new Size(310, 20);
-        this.lblNombreCliente.Text = "--";
         this.lblNombreCliente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
         this.lblNombreCliente.ForeColor = System.Drawing.Color.Gray;
+        this.lblNombreCliente.Location = new Point(15, 65);
+        this.lblNombreCliente.Name = "lblNombreCliente";
+        this.lblNombreCliente.Size = new Size(270, 20);
+        this.lblNombreCliente.Text = "--";
 
-        this.lblMetodoPago.Location = new Point(650, 455);
-        this.lblMetodoPago.Name = "lblMetodoPago";
-        this.lblMetodoPago.Size = new Size(80, 20);
-        this.lblMetodoPago.Text = "Método:";
+        // gbVenta
+        this.gbVenta.Controls.Add(this.lblSubtotal);
+        this.gbVenta.Controls.Add(this.lblSubtotalVal);
+        this.gbVenta.Controls.Add(this.lblIVA);
+        this.gbVenta.Controls.Add(this.lblIVAVal);
+        this.gbVenta.Controls.Add(this.lblTotal);
+        this.gbVenta.Controls.Add(this.lblTotalVal);
+        this.gbVenta.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+        this.gbVenta.Location = new Point(310, 5);
+        this.gbVenta.Name = "gbVenta";
+        this.gbVenta.Size = new Size(300, 140);
+        this.gbVenta.Text = "Totales";
 
-        this.cmbMetodoPago.DropDownStyle = ComboBoxStyle.DropDownList;
-        this.cmbMetodoPago.FormattingEnabled = true;
-        this.cmbMetodoPago.Items.AddRange(new object[] { "Efectivo", "Tarjeta", "Transferencia" });
-        this.cmbMetodoPago.Location = new Point(730, 452);
-        this.cmbMetodoPago.Name = "cmbMetodoPago";
-        this.cmbMetodoPago.Size = new Size(150, 23);
-        this.cmbMetodoPago.SelectedIndex = 0;
-
-        // Totals
-        this.lblSubtotal.Location = new Point(650, 490);
+        this.lblSubtotal.Font = new System.Drawing.Font("Segoe UI", 10F);
+        this.lblSubtotal.Location = new Point(15, 30);
         this.lblSubtotal.Name = "lblSubtotal";
         this.lblSubtotal.Size = new Size(80, 20);
         this.lblSubtotal.Text = "Subtotal:";
 
-        this.lblSubtotalVal.Location = new Point(730, 490);
+        this.lblSubtotalVal.Font = new System.Drawing.Font("Segoe UI", 10F);
+        this.lblSubtotalVal.Location = new Point(150, 30);
         this.lblSubtotalVal.Name = "lblSubtotalVal";
         this.lblSubtotalVal.Size = new Size(120, 20);
         this.lblSubtotalVal.Text = "$0.00";
         this.lblSubtotalVal.TextAlign = ContentAlignment.MiddleRight;
 
-        this.lblIVA.Location = new Point(650, 520);
+        this.lblIVA.Font = new System.Drawing.Font("Segoe UI", 10F);
+        this.lblIVA.Location = new Point(15, 65);
         this.lblIVA.Name = "lblIVA";
         this.lblIVA.Size = new Size(80, 20);
         this.lblIVA.Text = "IVA (16%):";
 
-        this.lblIVAVal.Location = new Point(730, 520);
+        this.lblIVAVal.Font = new System.Drawing.Font("Segoe UI", 10F);
+        this.lblIVAVal.Location = new Point(150, 65);
         this.lblIVAVal.Name = "lblIVAVal";
         this.lblIVAVal.Size = new Size(120, 20);
         this.lblIVAVal.Text = "$0.00";
         this.lblIVAVal.TextAlign = ContentAlignment.MiddleRight;
 
         this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-        this.lblTotal.Location = new Point(650, 550);
+        this.lblTotal.Location = new Point(15, 100);
         this.lblTotal.Name = "lblTotal";
         this.lblTotal.Size = new Size(80, 25);
         this.lblTotal.Text = "Total:";
 
         this.lblTotalVal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-        this.lblTotalVal.Location = new Point(730, 550);
+        this.lblTotalVal.Location = new Point(150, 100);
         this.lblTotalVal.Name = "lblTotalVal";
         this.lblTotalVal.Size = new Size(120, 25);
         this.lblTotalVal.Text = "$0.00";
         this.lblTotalVal.TextAlign = ContentAlignment.MiddleRight;
 
-        // Buttons
-        this.btnQuitar.Location = new Point(20, 560);
-        this.btnQuitar.Name = "btnQuitar";
-        this.btnQuitar.Size = new Size(100, 35);
-        this.btnQuitar.Text = "Quitar";
-        this.btnQuitar.UseVisualStyleBackColor = true;
-        this.btnQuitar.Click += new System.EventHandler(this.BtnQuitar_Click);
+        // gbPago
+        this.gbPago.Controls.Add(this.lblMetodoPago);
+        this.gbPago.Controls.Add(this.cmbMetodoPago);
+        this.gbPago.Controls.Add(this.btnVender);
+        this.gbPago.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+        this.gbPago.Location = new Point(620, 5);
+        this.gbPago.Name = "gbPago";
+        this.gbPago.Size = new Size(320, 140);
+        this.gbPago.Text = "Pago";
 
-        this.btnLimpiar.Location = new Point(130, 560);
-        this.btnLimpiar.Name = "btnLimpiar";
-        this.btnLimpiar.Size = new Size(100, 35);
-        this.btnLimpiar.Text = "Limpiar";
-        this.btnLimpiar.UseVisualStyleBackColor = true;
-        this.btnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
+        this.lblMetodoPago.Font = new System.Drawing.Font("Segoe UI", 9F);
+        this.lblMetodoPago.Location = new Point(15, 30);
+        this.lblMetodoPago.Name = "lblMetodoPago";
+        this.lblMetodoPago.Size = new Size(80, 20);
+        this.lblMetodoPago.Text = "Método:";
+
+        this.cmbMetodoPago.DropDownStyle = ComboBoxStyle.DropDownList;
+        this.cmbMetodoPago.Font = new System.Drawing.Font("Segoe UI", 9F);
+        this.cmbMetodoPago.FormattingEnabled = true;
+        this.cmbMetodoPago.Items.AddRange(new object[] { "Efectivo", "Tarjeta", "Transferencia" });
+        this.cmbMetodoPago.Location = new Point(120, 27);
+        this.cmbMetodoPago.Name = "cmbMetodoPago";
+        this.cmbMetodoPago.Size = new Size(150, 23);
+        this.cmbMetodoPago.SelectedIndex = 0;
 
         this.btnVender.BackColor = System.Drawing.Color.FromArgb(40, 167, 69);
         this.btnVender.FlatAppearance.BorderSize = 0;
         this.btnVender.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
         this.btnVender.ForeColor = System.Drawing.Color.White;
-        this.btnVender.Location = new Point(860, 510);
+        this.btnVender.Location = new Point(120, 70);
         this.btnVender.Name = "btnVender";
-        this.btnVender.Size = new Size(100, 85);
+        this.btnVender.Size = new Size(180, 55);
         this.btnVender.Text = "COBRAR";
         this.btnVender.UseVisualStyleBackColor = false;
         this.btnVender.Click += new System.EventHandler(this.BtnVender_Click);
 
-        // Add controls
+        // Add to Panel
+        this.pnlInformacionVenta.Controls.Add(this.gbCliente);
+        this.pnlInformacionVenta.Controls.Add(this.gbVenta);
+        this.pnlInformacionVenta.Controls.Add(this.gbPago);
+
+        // Form settings
+        this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        this.ClientSize = new System.Drawing.Size(1000, 800);
+        this.Name = "FormVentaAccesorios";
+        this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+        this.Text = "Punto de Venta Exclusivo - Accesorios";
+        
+        // Form Add Controls
         this.Controls.Add(headerPanel);
         this.Controls.Add(lblAccesorios);
         this.Controls.Add(this.lblBuscarAcc);
@@ -249,31 +328,18 @@ partial class FormVentaAccesorios
         this.Controls.Add(this.nudCantidad);
         this.Controls.Add(this.lblCarrito);
         this.Controls.Add(this.dgvCarrito);
-        this.Controls.Add(this.lblSubtotal);
-        this.Controls.Add(this.lblSubtotalVal);
-        this.Controls.Add(this.lblIVA);
-        this.Controls.Add(this.lblIVAVal);
-        this.Controls.Add(this.lblTotal);
-        this.Controls.Add(this.lblTotalVal);
-        this.Controls.Add(this.lblMetodoPago);
-        this.Controls.Add(this.cmbMetodoPago);
         this.Controls.Add(this.btnQuitar);
         this.Controls.Add(this.btnLimpiar);
-        this.Controls.Add(this.btnVender);
-        this.Controls.Add(this.lblCliente);
-        this.Controls.Add(this.txtClienteId);
-        this.Controls.Add(this.lblNombreCliente);
+        this.Controls.Add(this.pnlInformacionVenta);
 
-        this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(1000, 620);
-        this.Name = "FormVentaAccesorios";
-        this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        this.Text = "Punto de Venta Exclusivo - Accesorios";
-        
         ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.dgvCarrito)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
+        this.gbCliente.ResumeLayout(false);
+        this.gbCliente.PerformLayout();
+        this.gbVenta.ResumeLayout(false);
+        this.gbPago.ResumeLayout(false);
+        this.pnlInformacionVenta.ResumeLayout(false);
         this.ResumeLayout(false);
         this.PerformLayout();
     }

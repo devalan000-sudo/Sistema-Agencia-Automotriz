@@ -27,6 +27,8 @@ partial class FormVenta
     private Button btnVender;
     private Button btnBuscar;
     private Panel pnlFinanciamiento;
+    private Panel pnlBottomBar;
+    private Button btnToggleBottomBar;
     private TextBox txtEnganche;
     private TextBox txtPlazo;
     private TextBox txtTasa;
@@ -37,6 +39,15 @@ partial class FormVenta
     private Label lblCliente;
     private TextBox txtClienteId;
     private Label lblNombreCliente;
+    private TextBox txtRFC;
+
+    private GroupBox gbCliente;
+    private GroupBox gbVenta;
+    private GroupBox gbPago;
+    private Panel pnlInformacionVenta;
+    private Panel headerPanel;
+    private Label lblTitulo;
+    private Label lblSeleccionVehiculo;
 
     protected override void Dispose(bool disposing)
     {
@@ -49,292 +60,371 @@ partial class FormVenta
 
     private void InitializeComponent()
     {
-        this.dgvVehiculos = new DataGridView();
-        this.txtBuscar = new TextBox();
-        this.lblBuscar = new Label();
-        this.lblVehiculoSeleccionado = new Label();
-        this.lblSubtotal = new Label();
-        this.lblIVA = new Label();
-        this.lblTotal = new Label();
-        this.lblSubtotalVal = new Label();
-        this.lblIVAVal = new Label();
-        this.lblTotalVal = new Label();
-        this.lblMensualidad = new Label();
-        this.cmbMetodoPago = new ComboBox();
-        this.cmbTipoPago = new ComboBox();
-        this.lblMetodoPago = new Label();
-        this.lblTipoPago = new Label();
-        this.btnLimpiar = new Button();
-        this.btnVender = new Button();
-        this.btnBuscar = new Button();
-        this.pnlFinanciamiento = new Panel();
-        this.txtEnganche = new TextBox();
-        this.txtPlazo = new TextBox();
-        this.txtTasa = new TextBox();
-        this.lblEnganche = new Label();
-        this.lblPlazo = new Label();
-        this.lblTasa = new Label();
-        this.chkSeguro = new CheckBox();
-        this.lblCliente = new Label();
-        this.txtClienteId = new TextBox();
-        this.lblNombreCliente = new Label();
+        dgvVehiculos = new DataGridView();
+        txtBuscar = new TextBox();
+        lblBuscar = new Label();
+        lblVehiculoSeleccionado = new Label();
+        lblSubtotal = new Label();
+        lblIVA = new Label();
+        lblTotal = new Label();
+        lblSubtotalVal = new Label();
+        lblIVAVal = new Label();
+        lblTotalVal = new Label();
+        lblMensualidad = new Label();
+        cmbMetodoPago = new ComboBox();
+        cmbTipoPago = new ComboBox();
+        lblMetodoPago = new Label();
+        lblTipoPago = new Label();
+        btnLimpiar = new Button();
+        btnVender = new Button();
+        btnBuscar = new Button();
+        pnlFinanciamiento = new Panel();
+        lblEnganche = new Label();
+        txtEnganche = new TextBox();
+        lblPlazo = new Label();
+        txtPlazo = new TextBox();
+        lblTasa = new Label();
+        txtTasa = new TextBox();
+        chkSeguro = new CheckBox();
+        pnlBottomBar = new Panel();
+        btnToggleBottomBar = new Button();
+        lblCliente = new Label();
+        txtClienteId = new TextBox();
+        lblNombreCliente = new Label();
+        txtRFC = new TextBox();
+        headerPanel = new Panel();
+        lblTitulo = new Label();
+        lblSeleccionVehiculo = new Label();
+        gbCliente = new GroupBox();
+        gbVenta = new GroupBox();
+        gbPago = new GroupBox();
+        pnlInformacionVenta = new Panel();
+        
+        ((System.ComponentModel.ISupportInitialize)dgvVehiculos).BeginInit();
+        pnlFinanciamiento.SuspendLayout();
+        pnlBottomBar.SuspendLayout();
+        headerPanel.SuspendLayout();
+        gbCliente.SuspendLayout();
+        gbVenta.SuspendLayout();
+        gbPago.SuspendLayout();
+        pnlInformacionVenta.SuspendLayout();
+        SuspendLayout();
 
-        ((System.ComponentModel.ISupportInitialize)(this.dgvVehiculos)).BeginInit();
-        this.pnlFinanciamiento.SuspendLayout();
-        this.SuspendLayout();
-
-        // Header
-        var headerPanel = new Panel();
-        headerPanel.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
+        // headerPanel
+        headerPanel.BackColor = Color.FromArgb(0, 120, 215);
+        headerPanel.Controls.Add(lblTitulo);
         headerPanel.Dock = DockStyle.Top;
         headerPanel.Location = new Point(0, 0);
         headerPanel.Name = "headerPanel";
-        headerPanel.Size = new Size(1200, 50);
-        
-        var lblTitulo = new Label();
-        lblTitulo.AutoSize = false;
+        headerPanel.Size = new Size(1463, 67);
+
+        // lblTitulo
         lblTitulo.Dock = DockStyle.Fill;
-        lblTitulo.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-        lblTitulo.ForeColor = System.Drawing.Color.White;
+        lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+        lblTitulo.ForeColor = Color.White;
+        lblTitulo.Location = new Point(0, 0);
+        lblTitulo.Name = "lblTitulo";
+        lblTitulo.Size = new Size(1463, 67);
         lblTitulo.Text = "  Punto de Venta Exclusivo - Vehículos Automotríces";
         lblTitulo.TextAlign = ContentAlignment.MiddleLeft;
-        headerPanel.Controls.Add(lblTitulo);
 
-        // Vehicle Selection Section
-        var lblSeleccionVehiculo = new Label();
-        lblSeleccionVehiculo.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-        lblSeleccionVehiculo.Location = new Point(20, 65);
+        // lblSeleccionVehiculo
+        lblSeleccionVehiculo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+        lblSeleccionVehiculo.Location = new Point(23, 80);
         lblSeleccionVehiculo.Name = "lblSeleccionVehiculo";
-        lblSeleccionVehiculo.Size = new Size(200, 25);
+        lblSeleccionVehiculo.Size = new Size(229, 33);
         lblSeleccionVehiculo.Text = "Catálogo de Vehículos";
 
-        this.lblBuscar.Location = new Point(20, 95);
-        this.lblBuscar.Name = "lblBuscar";
-        this.lblBuscar.Size = new Size(80, 20);
-        this.lblBuscar.Text = "Buscar:";
+        // lblBuscar
+        lblBuscar.Location = new Point(23, 114);
+        lblBuscar.Name = "lblBuscar";
+        lblBuscar.Size = new Size(91, 27);
+        lblBuscar.Text = "Buscar:";
 
-        this.txtBuscar.Location = new Point(100, 95);
-        this.txtBuscar.Name = "txtBuscar";
-        this.txtBuscar.Size = new Size(300, 23);
-        this.txtBuscar.KeyPress += new KeyPressEventHandler(this.TxtBuscar_KeyPress);
+        // txtBuscar
+        txtBuscar.Location = new Point(114, 111);
+        txtBuscar.Name = "txtBuscar";
+        txtBuscar.Size = new Size(342, 27);
+        txtBuscar.KeyPress += TxtBuscar_KeyPress;
 
-        this.btnBuscar.Location = new Point(410, 93);
-        this.btnBuscar.Name = "btnBuscar";
-        this.btnBuscar.Size = new Size(80, 27);
-        this.btnBuscar.Text = "Buscar";
-        this.btnBuscar.UseVisualStyleBackColor = true;
-        this.btnBuscar.Click += new EventHandler(this.BtnBuscar_Click);
+        // btnBuscar
+        btnBuscar.Location = new Point(480, 109);
+        btnBuscar.Name = "btnBuscar";
+        btnBuscar.Size = new Size(91, 30);
+        btnBuscar.Text = "Buscar";
+        btnBuscar.UseVisualStyleBackColor = true;
+        btnBuscar.Click += BtnBuscar_Click;
 
-        this.dgvVehiculos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        this.dgvVehiculos.Location = new Point(20, 125);
-        this.dgvVehiculos.Name = "dgvVehiculos";
-        this.dgvVehiculos.Size = new Size(950, 240);
-        this.dgvVehiculos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        this.dgvVehiculos.MultiSelect = false;
-        this.dgvVehiculos.ReadOnly = true;
-        this.dgvVehiculos.DoubleClick += new EventHandler(this.DgvVehiculos_DoubleClick);
+        // dgvVehiculos
+        dgvVehiculos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+        dgvVehiculos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        dgvVehiculos.Location = new Point(23, 150);
+        dgvVehiculos.MultiSelect = false;
+        dgvVehiculos.Name = "dgvVehiculos";
+        dgvVehiculos.ReadOnly = true;
+        dgvVehiculos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvVehiculos.Size = new Size(1417, 450);
+        dgvVehiculos.DoubleClick += DgvVehiculos_DoubleClick;
 
-        this.lblVehiculoSeleccionado.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-        this.lblVehiculoSeleccionado.ForeColor = System.Drawing.Color.Gray;
-        this.lblVehiculoSeleccionado.Location = new Point(20, 380);
-        this.lblVehiculoSeleccionado.Name = "lblVehiculoSeleccionado";
-        this.lblVehiculoSeleccionado.Size = new Size(600, 30);
-        this.lblVehiculoSeleccionado.Text = "Sin vehículo seleccionado";
+        // pnlInformacionVenta
+        pnlInformacionVenta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        pnlInformacionVenta.Controls.Add(gbCliente);
+        pnlInformacionVenta.Controls.Add(gbVenta);
+        pnlInformacionVenta.Controls.Add(gbPago);
+        pnlInformacionVenta.Controls.Add(btnLimpiar);
+        pnlInformacionVenta.Controls.Add(btnVender);
+        pnlInformacionVenta.Location = new Point(23, 620);
+        pnlInformacionVenta.Name = "pnlInformacionVenta";
+        pnlInformacionVenta.Size = new Size(1417, 260);
 
-        // Payment Section
-        this.lblSubtotal.Location = new Point(20, 420);
-        this.lblSubtotal.Name = "lblSubtotal";
-        this.lblSubtotal.Size = new Size(80, 20);
-        this.lblSubtotal.Text = "Subtotal:";
+        // gbCliente
+        gbCliente.Controls.Add(lblCliente);
+        gbCliente.Controls.Add(txtClienteId);
+        gbCliente.Controls.Add(lblNombreCliente);
+        gbCliente.Controls.Add(txtRFC);
+        gbCliente.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        gbCliente.Location = new Point(0, 5);
+        gbCliente.Name = "gbCliente";
+        gbCliente.Size = new Size(310, 240);
+        gbCliente.Text = "Datos del Cliente";
 
-        this.lblSubtotalVal.Location = new Point(100, 420);
-        this.lblSubtotalVal.Name = "lblSubtotalVal";
-        this.lblSubtotalVal.Size = new Size(120, 20);
-        this.lblSubtotalVal.Text = "$0.00";
-        this.lblSubtotalVal.TextAlign = ContentAlignment.MiddleRight;
+        lblCliente.Font = new Font("Segoe UI", 9F);
+        lblCliente.Location = new Point(15, 40);
+        lblCliente.Size = new Size(80, 27);
+        lblCliente.Text = "ID Cliente:";
 
-        this.lblIVA.Location = new Point(250, 420);
-        this.lblIVA.Name = "lblIVA";
-        this.lblIVA.Size = new Size(80, 20);
-        this.lblIVA.Text = "IVA (16%):";
+        txtClienteId.Font = new Font("Segoe UI", 9F);
+        txtClienteId.Location = new Point(100, 37);
+        txtClienteId.Size = new Size(100, 27);
+        txtClienteId.TextChanged += TxtClienteId_TextChanged;
 
-        this.lblIVAVal.Location = new Point(330, 420);
-        this.lblIVAVal.Name = "lblIVAVal";
-        this.lblIVAVal.Size = new Size(120, 20);
-        this.lblIVAVal.Text = "$0.00";
-        this.lblIVAVal.TextAlign = ContentAlignment.MiddleRight;
+        lblNombreCliente.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        lblNombreCliente.ForeColor = Color.Gray;
+        lblNombreCliente.Location = new Point(15, 80);
+        lblNombreCliente.Size = new Size(280, 27);
+        lblNombreCliente.Text = "--";
 
-        this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 12F, FontStyle.Bold);
-        this.lblTotal.Location = new Point(480, 415);
-        this.lblTotal.Name = "lblTotal";
-        this.lblTotal.Size = new Size(80, 25);
-        this.lblTotal.Text = "Total:";
+        txtRFC.Font = new Font("Segoe UI", 9F);
+        txtRFC.Location = new Point(15, 120);
+        txtRFC.ReadOnly = true;
+        txtRFC.Size = new Size(200, 27);
+        txtRFC.Text = "RFC: --";
 
-        this.lblTotalVal.Font = new System.Drawing.Font("Segoe UI", 12F, FontStyle.Bold);
-        this.lblTotalVal.Location = new Point(560, 415);
-        this.lblTotalVal.Name = "lblTotalVal";
-        this.lblTotalVal.Size = new Size(120, 25);
-        this.lblTotalVal.Text = "$0.00";
-        this.lblTotalVal.TextAlign = ContentAlignment.MiddleRight;
+        // gbVenta
+        gbVenta.Controls.Add(lblVehiculoSeleccionado);
+        gbVenta.Controls.Add(lblSubtotal);
+        gbVenta.Controls.Add(lblSubtotalVal);
+        gbVenta.Controls.Add(lblIVA);
+        gbVenta.Controls.Add(lblIVAVal);
+        gbVenta.Controls.Add(lblTotal);
+        gbVenta.Controls.Add(lblTotalVal);
+        gbVenta.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        gbVenta.Location = new Point(320, 5);
+        gbVenta.Name = "gbVenta";
+        gbVenta.Size = new Size(390, 240);
+        gbVenta.Text = "Detalles y Totales";
 
-        this.lblCliente.Location = new Point(700, 420);
-        this.lblCliente.Name = "lblCliente";
-        this.lblCliente.Size = new Size(80, 20);
-        this.lblCliente.Text = "ID Cliente:";
+        lblVehiculoSeleccionado.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        lblVehiculoSeleccionado.ForeColor = Color.FromArgb(0, 120, 215);
+        lblVehiculoSeleccionado.Location = new Point(20, 35);
+        lblVehiculoSeleccionado.Size = new Size(350, 40);
+        lblVehiculoSeleccionado.Text = "Sin vehículo seleccionado";
 
-        this.txtClienteId.Location = new Point(780, 417);
-        this.txtClienteId.Name = "txtClienteId";
-        this.txtClienteId.Size = new Size(100, 23);
-        this.txtClienteId.TextChanged += new EventHandler(this.TxtClienteId_TextChanged);
+        lblSubtotal.Font = new Font("Segoe UI", 10F);
+        lblSubtotal.Location = new Point(20, 85);
+        lblSubtotal.Size = new Size(91, 27);
+        lblSubtotal.Text = "Subtotal:";
 
-        this.lblNombreCliente.Location = new Point(700, 445);
-        this.lblNombreCliente.Name = "lblNombreCliente";
-        this.lblNombreCliente.Size = new Size(260, 20);
-        this.lblNombreCliente.Text = "--";
-        this.lblNombreCliente.Font = new System.Drawing.Font("Segoe UI", 9F, FontStyle.Bold);
-        this.lblNombreCliente.ForeColor = System.Drawing.Color.Gray;
+        lblSubtotalVal.Font = new Font("Segoe UI", 10F);
+        lblSubtotalVal.Location = new Point(150, 85);
+        lblSubtotalVal.Size = new Size(200, 27);
+        lblSubtotalVal.Text = "$0.00";
+        lblSubtotalVal.TextAlign = ContentAlignment.MiddleRight;
 
-        this.lblMensualidad.Font = new System.Drawing.Font("Segoe UI", 10F, FontStyle.Bold);
-        this.lblMensualidad.ForeColor = System.Drawing.Color.FromArgb(0, 120, 215);
-        this.lblMensualidad.Location = new Point(480, 445);
-        this.lblMensualidad.Name = "lblMensualidad";
-        this.lblMensualidad.Size = new Size(250, 20);
-        this.lblMensualidad.Visible = false;
+        lblIVA.Font = new Font("Segoe UI", 10F);
+        lblIVA.Location = new Point(20, 125);
+        lblIVA.Size = new Size(91, 27);
+        lblIVA.Text = "IVA (16%):";
 
-        this.lblTipoPago.Location = new Point(20, 455);
-        this.lblTipoPago.Name = "lblTipoPago";
-        this.lblTipoPago.Size = new Size(80, 20);
-        this.lblTipoPago.Text = "Tipo Pago:";
+        lblIVAVal.Font = new Font("Segoe UI", 10F);
+        lblIVAVal.Location = new Point(150, 125);
+        lblIVAVal.Size = new Size(200, 27);
+        lblIVAVal.Text = "$0.00";
+        lblIVAVal.TextAlign = ContentAlignment.MiddleRight;
 
-        this.cmbTipoPago.DropDownStyle = ComboBoxStyle.DropDownList;
-        this.cmbTipoPago.FormattingEnabled = true;
-        this.cmbTipoPago.Items.AddRange(new object[] { "Contado", "Financiamiento" });
-        this.cmbTipoPago.Location = new Point(100, 455);
-        this.cmbTipoPago.Name = "cmbTipoPago";
-        this.cmbTipoPago.Size = new Size(130, 23);
-        this.cmbTipoPago.SelectedIndex = 0;
-        this.cmbTipoPago.SelectedIndexChanged += new EventHandler(this.CmbTipoPago_SelectedIndexChanged);
+        lblTotal.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+        lblTotal.Location = new Point(20, 175);
+        lblTotal.Size = new Size(91, 33);
+        lblTotal.Text = "Total:";
 
-        this.lblMetodoPago.Location = new Point(250, 455);
-        this.lblMetodoPago.Name = "lblMetodoPago";
-        this.lblMetodoPago.Size = new Size(80, 20);
-        this.lblMetodoPago.Text = "Método:";
+        lblTotalVal.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+        lblTotalVal.Location = new Point(150, 175);
+        lblTotalVal.Size = new Size(200, 33);
+        lblTotalVal.Text = "$0.00";
+        lblTotalVal.TextAlign = ContentAlignment.MiddleRight;
 
-        this.cmbMetodoPago.DropDownStyle = ComboBoxStyle.DropDownList;
-        this.cmbMetodoPago.FormattingEnabled = true;
-        this.cmbMetodoPago.Items.AddRange(new object[] { "Efectivo", "Tarjeta", "Transferencia" });
-        this.cmbMetodoPago.Location = new Point(330, 455);
-        this.cmbMetodoPago.Name = "cmbMetodoPago";
-        this.cmbMetodoPago.Size = new Size(130, 23);
+        // gbPago
+        gbPago.Controls.Add(lblTipoPago);
+        gbPago.Controls.Add(cmbTipoPago);
+        gbPago.Controls.Add(lblMetodoPago);
+        gbPago.Controls.Add(cmbMetodoPago);
+        gbPago.Controls.Add(pnlFinanciamiento);
+        gbPago.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        gbPago.Location = new Point(720, 5);
+        gbPago.Name = "gbPago";
+        gbPago.Size = new Size(390, 240);
+        gbPago.Text = "Configuración de Pago";
 
-        // Financing Panel
-        this.pnlFinanciamiento.BackColor = System.Drawing.Color.FromArgb(240, 240, 240);
-        this.pnlFinanciamiento.Location = new Point(20, 490);
-        this.pnlFinanciamiento.Name = "pnlFinanciamiento";
-        this.pnlFinanciamiento.Size = new Size(280, 130);
-        this.pnlFinanciamiento.Visible = false;
+        lblTipoPago.Font = new Font("Segoe UI", 9F);
+        lblTipoPago.Location = new Point(15, 35);
+        lblTipoPago.Size = new Size(90, 27);
+        lblTipoPago.Text = "Tipo Pago:";
 
-        this.lblEnganche.Location = new Point(10, 10);
-        this.lblEnganche.Name = "lblEnganche";
-        this.lblEnganche.Size = new Size(60, 20);
-        this.lblEnganche.Text = "Enganche:";
+        cmbTipoPago.DropDownStyle = ComboBoxStyle.DropDownList;
+        cmbTipoPago.Font = new Font("Segoe UI", 9F);
+        cmbTipoPago.FormattingEnabled = true;
+        cmbTipoPago.Items.AddRange(new object[] { "Contado", "Financiamiento" });
+        cmbTipoPago.Location = new Point(110, 32);
+        cmbTipoPago.Size = new Size(150, 28);
+        cmbTipoPago.SelectedIndexChanged += CmbTipoPago_SelectedIndexChanged;
 
-        this.txtEnganche.Location = new Point(10, 32);
-        this.txtEnganche.Name = "txtEnganche";
-        this.txtEnganche.Size = new Size(80, 23);
-        this.txtEnganche.Text = "0";
-        this.txtEnganche.TextChanged += new EventHandler(this.TxtEnganche_TextChanged);
+        lblMetodoPago.Font = new Font("Segoe UI", 9F);
+        lblMetodoPago.Location = new Point(15, 75);
+        lblMetodoPago.Size = new Size(90, 27);
+        lblMetodoPago.Text = "Método:";
 
-        this.lblPlazo.Location = new Point(100, 10);
-        this.lblPlazo.Name = "lblPlazo";
-        this.lblPlazo.Size = new Size(40, 20);
-        this.lblPlazo.Text = "Meses:";
+        cmbMetodoPago.DropDownStyle = ComboBoxStyle.DropDownList;
+        cmbMetodoPago.Font = new Font("Segoe UI", 9F);
+        cmbMetodoPago.FormattingEnabled = true;
+        cmbMetodoPago.Items.AddRange(new object[] { "Efectivo", "Tarjeta", "Transferencia" });
+        cmbMetodoPago.Location = new Point(110, 72);
+        cmbMetodoPago.Size = new Size(150, 28);
 
-        this.txtPlazo.Location = new Point(100, 32);
-        this.txtPlazo.Name = "txtPlazo";
-        this.txtPlazo.Size = new Size(60, 23);
-        this.txtPlazo.Text = "12";
-        this.txtPlazo.TextChanged += new EventHandler(this.TxtPlazo_TextChanged);
+        // pnlFinanciamiento
+        pnlFinanciamiento.BackColor = Color.FromArgb(244, 244, 244);
+        pnlFinanciamiento.Controls.Add(lblEnganche);
+        pnlFinanciamiento.Controls.Add(txtEnganche);
+        pnlFinanciamiento.Controls.Add(lblPlazo);
+        pnlFinanciamiento.Controls.Add(txtPlazo);
+        pnlFinanciamiento.Controls.Add(lblTasa);
+        pnlFinanciamiento.Controls.Add(txtTasa);
+        pnlFinanciamiento.Controls.Add(chkSeguro);
+        pnlFinanciamiento.Controls.Add(lblMensualidad);
+        pnlFinanciamiento.Location = new Point(10, 110);
+        pnlFinanciamiento.Name = "pnlFinanciamiento";
+        pnlFinanciamiento.Size = new Size(365, 115);
+        pnlFinanciamiento.Visible = false;
 
-        this.lblTasa.Location = new Point(10, 60);
-        this.lblTasa.Name = "lblTasa";
-        this.lblTasa.Size = new Size(60, 20);
-        this.lblTasa.Text = "Tasa %:";
+        lblEnganche.Font = new Font("Segoe UI", 9F);
+        lblEnganche.Location = new Point(10, 10);
+        lblEnganche.Size = new Size(80, 20);
+        lblEnganche.Text = "Enganche:";
 
-        this.txtTasa.Location = new Point(10, 82);
-        this.txtTasa.Name = "txtTasa";
-        this.txtTasa.Size = new Size(80, 23);
-        this.txtTasa.Text = "12";
-        this.txtTasa.TextChanged += new EventHandler(this.TxtTasa_TextChanged);
+        txtEnganche.Font = new Font("Segoe UI", 9F);
+        txtEnganche.Location = new Point(10, 35);
+        txtEnganche.Size = new Size(100, 27);
+        txtEnganche.Text = "0";
+        txtEnganche.TextChanged += TxtEnganche_TextChanged;
 
-        this.chkSeguro.Location = new Point(100, 82);
-        this.chkSeguro.Name = "chkSeguro";
-        this.chkSeguro.Size = new Size(70, 20);
-        this.chkSeguro.Text = "Seguro";
+        lblPlazo.Font = new Font("Segoe UI", 9F);
+        lblPlazo.Location = new Point(125, 10);
+        lblPlazo.Size = new Size(60, 20);
+        lblPlazo.Text = "Meses:";
 
-        this.pnlFinanciamiento.Controls.Add(this.lblEnganche);
-        this.pnlFinanciamiento.Controls.Add(this.txtEnganche);
-        this.pnlFinanciamiento.Controls.Add(this.lblPlazo);
-        this.pnlFinanciamiento.Controls.Add(this.txtPlazo);
-        this.pnlFinanciamiento.Controls.Add(this.lblTasa);
-        this.pnlFinanciamiento.Controls.Add(this.txtTasa);
-        this.pnlFinanciamiento.Controls.Add(this.chkSeguro);
+        txtPlazo.Font = new Font("Segoe UI", 9F);
+        txtPlazo.Location = new Point(125, 35);
+        txtPlazo.Size = new Size(60, 27);
+        txtPlazo.Text = "12";
+        txtPlazo.TextChanged += TxtPlazo_TextChanged;
 
-        // Buttons
-        this.btnLimpiar.Location = new Point(620, 560);
-        this.btnLimpiar.Name = "btnLimpiar";
-        this.btnLimpiar.Size = new Size(100, 35);
-        this.btnLimpiar.Text = "Limpiar Todo";
-        this.btnLimpiar.UseVisualStyleBackColor = true;
-        this.btnLimpiar.Click += new EventHandler(this.BtnLimpiar_Click);
+        lblTasa.Font = new Font("Segoe UI", 9F);
+        lblTasa.Location = new Point(10, 65);
+        lblTasa.Size = new Size(80, 20);
+        lblTasa.Text = "Tasa %:";
 
-        this.btnVender.BackColor = System.Drawing.Color.FromArgb(40, 167, 69);
-        this.btnVender.FlatAppearance.BorderSize = 0;
-        this.btnVender.Font = new System.Drawing.Font("Segoe UI", 12F, FontStyle.Bold);
-        this.btnVender.ForeColor = System.Drawing.Color.White;
-        this.btnVender.Location = new Point(740, 540);
-        this.btnVender.Name = "btnVender";
-        this.btnVender.Size = new Size(230, 60);
-        this.btnVender.Text = "CONCRETAR VENTA DE VEHÍCULO";
-        this.btnVender.UseVisualStyleBackColor = false;
-        this.btnVender.Click += new EventHandler(this.BtnVender_Click);
+        txtTasa.Font = new Font("Segoe UI", 9F);
+        txtTasa.Location = new Point(10, 85);
+        txtTasa.Size = new Size(100, 27);
+        txtTasa.Text = "12";
+        txtTasa.TextChanged += TxtTasa_TextChanged;
 
-        // Add controls
-        this.Controls.Add(headerPanel);
-        this.Controls.Add(lblSeleccionVehiculo);
-        this.Controls.Add(this.lblBuscar);
-        this.Controls.Add(this.txtBuscar);
-        this.Controls.Add(this.btnBuscar);
-        this.Controls.Add(this.dgvVehiculos);
-        this.Controls.Add(this.lblVehiculoSeleccionado);
-        this.Controls.Add(this.lblSubtotal);
-        this.Controls.Add(this.lblSubtotalVal);
-        this.Controls.Add(this.lblIVA);
-        this.Controls.Add(this.lblIVAVal);
-        this.Controls.Add(this.lblTotal);
-        this.Controls.Add(this.lblTotalVal);
-        this.Controls.Add(this.lblMensualidad);
-        this.Controls.Add(this.lblTipoPago);
-        this.Controls.Add(this.cmbTipoPago);
-        this.Controls.Add(this.lblMetodoPago);
-        this.Controls.Add(this.cmbMetodoPago);
-        this.Controls.Add(this.pnlFinanciamiento);
-        this.Controls.Add(this.btnLimpiar);
-        this.Controls.Add(this.btnVender);
-        this.Controls.Add(this.lblCliente);
-        this.Controls.Add(this.txtClienteId);
-        this.Controls.Add(this.lblNombreCliente);
+        chkSeguro.Font = new Font("Segoe UI", 9F);
+        chkSeguro.Location = new Point(125, 87);
+        chkSeguro.Size = new Size(80, 25);
+        chkSeguro.Text = "Seguro";
 
-        this.AutoScaleDimensions = new SizeF(7F, 15F);
-        this.AutoScaleMode = AutoScaleMode.Font;
-        this.ClientSize = new Size(1000, 650);
-        this.Name = "FormVenta";
-        this.StartPosition = FormStartPosition.CenterScreen;
-        this.Text = "Punto de Venta Exclusivo - Vehículos";
+        lblMensualidad.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+        lblMensualidad.ForeColor = Color.FromArgb(0, 120, 215);
+        lblMensualidad.Location = new Point(200, 35);
+        lblMensualidad.Size = new Size(150, 60);
+        lblMensualidad.Visible = true;
+
+        // btnLimpiar
+        btnLimpiar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        btnLimpiar.Font = new Font("Segoe UI", 10F);
+        btnLimpiar.Location = new Point(1205, 18);
+        btnLimpiar.Name = "btnLimpiar";
+        btnLimpiar.Size = new Size(190, 45);
+        btnLimpiar.Text = "LIMPIAR TODO";
+        btnLimpiar.UseVisualStyleBackColor = true;
+        btnLimpiar.Click += BtnLimpiar_Click;
+
+        // btnVender
+        btnVender.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        btnVender.BackColor = Color.FromArgb(40, 167, 69);
+        btnVender.FlatAppearance.BorderSize = 0;
+        btnVender.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+        btnVender.ForeColor = Color.White;
+        btnVender.Location = new Point(1205, 75);
+        btnVender.Name = "btnVender";
+        btnVender.Size = new Size(190, 110);
+        btnVender.Text = "CONCRETAR VENTA DE VEHÍCULO";
+        btnVender.UseVisualStyleBackColor = false;
+        btnVender.Click += BtnVender_Click;
+
+        // pnlBottomBar
+        pnlBottomBar.BackColor = SystemColors.Control;
+        pnlBottomBar.Controls.Add(btnToggleBottomBar);
+        pnlBottomBar.Dock = DockStyle.Bottom;
+        pnlBottomBar.Location = new Point(0, 907);
+        pnlBottomBar.Name = "pnlBottomBar";
+        pnlBottomBar.Padding = new Padding(6, 7, 6, 7);
+        pnlBottomBar.Size = new Size(1463, 53);
+
+        // btnToggleBottomBar
+        btnToggleBottomBar.Location = new Point(7, 11);
+        btnToggleBottomBar.Name = "btnToggleBottomBar";
+        btnToggleBottomBar.Size = new Size(137, 32);
+        btnToggleBottomBar.Text = "Ocultar barra";
+        btnToggleBottomBar.Click += BtnToggleBottomBar_Click;
+
+        // FormVenta
+        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(1463, 960);
+        Controls.Add(pnlInformacionVenta);
+        Controls.Add(pnlBottomBar);
+        Controls.Add(headerPanel);
+        Controls.Add(lblSeleccionVehiculo);
+        Controls.Add(lblBuscar);
+        Controls.Add(txtBuscar);
+        Controls.Add(btnBuscar);
+        Controls.Add(dgvVehiculos);
+        Name = "FormVenta";
+        StartPosition = FormStartPosition.CenterScreen;
+        Text = "Punto de Venta Exclusivo - Vehículos";
         
-        ((System.ComponentModel.ISupportInitialize)(this.dgvVehiculos)).EndInit();
-        this.pnlFinanciamiento.ResumeLayout(false);
-        this.pnlFinanciamiento.PerformLayout();
-        this.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)dgvVehiculos).EndInit();
+        pnlFinanciamiento.ResumeLayout(false);
+        pnlFinanciamiento.PerformLayout();
+        pnlBottomBar.ResumeLayout(false);
+        headerPanel.ResumeLayout(false);
+        gbCliente.ResumeLayout(false);
+        gbCliente.PerformLayout();
+        gbVenta.ResumeLayout(false);
+        gbPago.ResumeLayout(false);
+        pnlInformacionVenta.ResumeLayout(false);
+        ResumeLayout(false);
+        PerformLayout();
     }
 }

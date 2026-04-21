@@ -74,6 +74,9 @@ partial class FormCategoriaList
         this.dgvCategorias.RowTemplate.Height = 35;
         this.dgvCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
         this.dgvCategorias.Size = new System.Drawing.Size(610, 280);
+        this.dgvCategorias.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.dgvCategorias.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9F);
         this.dgvCategorias.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(0, 120, 215);
         this.dgvCategorias.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
@@ -85,6 +88,7 @@ partial class FormCategoriaList
         this.btnNuevo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnNuevo.ForeColor = System.Drawing.Color.White;
         this.btnNuevo.Location = new System.Drawing.Point(20, 360);
+        this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
         this.btnNuevo.Name = "btnNuevo";
         this.btnNuevo.Size = new System.Drawing.Size(120, 40);
         this.btnNuevo.Text = "NUEVO";
@@ -99,6 +103,7 @@ partial class FormCategoriaList
         this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnEditar.ForeColor = System.Drawing.Color.White;
         this.btnEditar.Location = new System.Drawing.Point(150, 360);
+        this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
         this.btnEditar.Name = "btnEditar";
         this.btnEditar.Size = new System.Drawing.Size(120, 40);
         this.btnEditar.Text = "EDITAR";
@@ -113,6 +118,7 @@ partial class FormCategoriaList
         this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnEliminar.ForeColor = System.Drawing.Color.White;
         this.btnEliminar.Location = new System.Drawing.Point(280, 360);
+        this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
         this.btnEliminar.Name = "btnEliminar";
         this.btnEliminar.Size = new System.Drawing.Size(120, 40);
         this.btnEliminar.Text = "ELIMINAR";
@@ -127,6 +133,7 @@ partial class FormCategoriaList
         this.btnActualizar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnActualizar.ForeColor = System.Drawing.Color.White;
         this.btnActualizar.Location = new System.Drawing.Point(510, 360);
+        this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
         this.btnActualizar.Name = "btnActualizar";
         this.btnActualizar.Size = new System.Drawing.Size(120, 40);
         this.btnActualizar.Text = "ACTUALIZAR";

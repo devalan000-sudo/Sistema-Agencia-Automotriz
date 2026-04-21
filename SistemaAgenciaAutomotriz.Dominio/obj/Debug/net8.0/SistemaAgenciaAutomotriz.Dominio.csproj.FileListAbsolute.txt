@@ -9,3 +9,4 @@ C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Do
 C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Dominio\obj\Debug\net8.0\refint\SistemaAgenciaAutomotriz.Dominio.dll
 C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Dominio\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Dominio.pdb
 C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Dominio\obj\Debug\net8.0\ref\SistemaAgenciaAutomotriz.Dominio.dll
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Dominio\obj\Debug\net8.0\SistemaAgenciaAutomotriz.Dominio.sourcelink.json

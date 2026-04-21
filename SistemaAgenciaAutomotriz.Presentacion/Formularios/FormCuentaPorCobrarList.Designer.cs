@@ -44,12 +44,16 @@ partial class FormCuentaPorCobrarList
         dgvCuentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         dgvCuentas.MultiSelect = false;
         dgvCuentas.ReadOnly = true;
+        dgvCuentas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.Controls.Add(dgvCuentas);
 
         btnVerAbonos.FlatStyle = FlatStyle.Flat;
         btnVerAbonos.Location = new Point(20, 450);
         btnVerAbonos.Size = new Size(130, 35);
         btnVerAbonos.Text = "Ver Abonos";
+        btnVerAbonos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
         btnVerAbonos.Click += btnVerAbonos_Click;
         this.Controls.Add(btnVerAbonos);
 
@@ -59,6 +63,7 @@ partial class FormCuentaPorCobrarList
         btnRegistrarAbono.Location = new Point(160, 450);
         btnRegistrarAbono.Size = new Size(150, 35);
         btnRegistrarAbono.Text = "Registrar Abono";
+        btnRegistrarAbono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
         btnRegistrarAbono.Click += btnRegistrarAbono_Click;
         this.Controls.Add(btnRegistrarAbono);
 
@@ -66,6 +71,7 @@ partial class FormCuentaPorCobrarList
         btnActualizar.Location = new Point(780, 450);
         btnActualizar.Size = new Size(100, 35);
         btnActualizar.Text = "Actualizar";
+        btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
         btnActualizar.Click += btnActualizar_Click;
         this.Controls.Add(btnActualizar);
 

@@ -171,7 +171,7 @@ public class FormAbonoEdit : Form
     private void InitializeComponent()
     {
         this.Text = "Registrar Abono";
-        this.Size = new Size(350, 220);
+        this.Size = new Size(450, 320);
         this.StartPosition = FormStartPosition.CenterParent;
         this.FormBorderStyle = FormBorderStyle.FixedDialog;
         this.MaximizeBox = false;

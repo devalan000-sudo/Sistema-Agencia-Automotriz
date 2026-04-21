@@ -45,18 +45,23 @@ partial class FormVehiculoVendidoList
         this.dgvHistorial.ReadOnly = true;
         this.dgvHistorial.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         this.dgvHistorial.Size = new Size(960, 400);
+        this.dgvHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 
         this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 10F);
         this.lblTotal.Location = new Point(20, 470);
         this.lblTotal.Name = "lblTotal";
         this.lblTotal.Size = new Size(400, 25);
         this.lblTotal.Text = "Total: 0";
+        this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 
         this.btnActualizar.Location = new Point(800, 470);
         this.btnActualizar.Name = "btnActualizar";
         this.btnActualizar.Size = new Size(80, 30);
         this.btnActualizar.Text = "Actualizar";
         this.btnActualizar.UseVisualStyleBackColor = true;
+        this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
         this.btnActualizar.Click += new EventHandler(this.btnActualizar_Click);
 
         this.btnCerrar.Location = new Point(890, 470);
@@ -64,6 +69,7 @@ partial class FormVehiculoVendidoList
         this.btnCerrar.Size = new Size(80, 30);
         this.btnCerrar.Text = "Cerrar";
         this.btnCerrar.UseVisualStyleBackColor = true;
+        this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
         this.btnCerrar.Click += new EventHandler(this.btnCerrar_Click);
 
         this.Controls.Add(this.lblTitulo);

@@ -228,6 +228,7 @@ partial class FormPrincipal
         this.pictureBox1.Size = new System.Drawing.Size(40, 40);
         this.pictureBox1.TabIndex = 3;
         this.pictureBox1.TabStop = false;
+        this.pictureBox1.Visible = false;
 
         // Form
         this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);

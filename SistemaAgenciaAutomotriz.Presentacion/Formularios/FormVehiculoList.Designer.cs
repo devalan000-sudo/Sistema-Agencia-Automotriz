@@ -10,6 +10,7 @@ partial class FormVehiculoList
     private Button btnActualizar;
     private Panel headerPanel;
     private Label lblTitulo;
+    private Panel pnlAcciones;
 
     protected override void Dispose(bool disposing)
     {
@@ -28,6 +29,7 @@ partial class FormVehiculoList
         this.btnEliminar = new Button();
         this.btnActualizar = new Button();
         this.headerPanel = new Panel();
+        this.pnlAcciones = new Panel();
         this.lblTitulo = new Label();
         ((System.ComponentModel.ISupportInitialize)(this.dgvVehiculos)).BeginInit();
         this.SuspendLayout();
@@ -65,12 +67,16 @@ partial class FormVehiculoList
         this.dgvVehiculos.EnableHeadersVisualStyles = false;
         this.dgvVehiculos.GridColor = System.Drawing.Color.FromArgb(230, 230, 230);
         this.dgvVehiculos.Location = new System.Drawing.Point(20, 65);
+        this.dgvVehiculos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
         this.dgvVehiculos.Name = "dgvVehiculos";
         this.dgvVehiculos.ReadOnly = true;
         this.dgvVehiculos.RowHeadersVisible = false;
         this.dgvVehiculos.RowTemplate.Height = 35;
         this.dgvVehiculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
         this.dgvVehiculos.Size = new System.Drawing.Size(960, 400);
+        this.dgvVehiculos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
         this.dgvVehiculos.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9F);
         this.dgvVehiculos.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(0, 120, 215);
         this.dgvVehiculos.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
@@ -81,7 +87,7 @@ partial class FormVehiculoList
         this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
         this.btnNuevo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnNuevo.ForeColor = System.Drawing.Color.White;
-        this.btnNuevo.Location = new System.Drawing.Point(20, 480);
+        this.btnNuevo.Location = new System.Drawing.Point(10, 8);
         this.btnNuevo.Name = "btnNuevo";
         this.btnNuevo.Size = new System.Drawing.Size(120, 40);
         this.btnNuevo.Text = "NUEVO";
@@ -94,7 +100,7 @@ partial class FormVehiculoList
         this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
         this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnEditar.ForeColor = System.Drawing.Color.White;
-        this.btnEditar.Location = new System.Drawing.Point(150, 480);
+        this.btnEditar.Location = new System.Drawing.Point(140, 8);
         this.btnEditar.Name = "btnEditar";
         this.btnEditar.Size = new System.Drawing.Size(120, 40);
         this.btnEditar.Text = "EDITAR";
@@ -107,7 +113,7 @@ partial class FormVehiculoList
         this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
         this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnEliminar.ForeColor = System.Drawing.Color.White;
-        this.btnEliminar.Location = new System.Drawing.Point(280, 480);
+        this.btnEliminar.Location = new System.Drawing.Point(270, 8);
         this.btnEliminar.Name = "btnEliminar";
         this.btnEliminar.Size = new System.Drawing.Size(120, 40);
         this.btnEliminar.Text = "ELIMINAR";
@@ -120,7 +126,7 @@ partial class FormVehiculoList
         this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
         this.btnActualizar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
         this.btnActualizar.ForeColor = System.Drawing.Color.White;
-        this.btnActualizar.Location = new System.Drawing.Point(860, 480);
+        this.btnActualizar.Location = new System.Drawing.Point(390, 8);
         this.btnActualizar.Name = "btnActualizar";
         this.btnActualizar.Size = new System.Drawing.Size(120, 40);
         this.btnActualizar.Text = "ACTUALIZAR";
@@ -128,15 +134,20 @@ partial class FormVehiculoList
         this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
 
         // FormVehiculoList
+        this.pnlAcciones.Dock = System.Windows.Forms.DockStyle.Bottom;
+        this.pnlAcciones.Height = 60;
+        this.pnlAcciones.BackColor = System.Drawing.SystemColors.Control;
+        this.pnlAcciones.Padding = new System.Windows.Forms.Padding(5);
+        this.pnlAcciones.Controls.Add(this.btnNuevo);
+        this.pnlAcciones.Controls.Add(this.btnEditar);
+        this.pnlAcciones.Controls.Add(this.btnEliminar);
+        this.pnlAcciones.Controls.Add(this.btnActualizar);
         this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(1000, 540);
+        this.ClientSize = new System.Drawing.Size(1280, 720);
         this.Controls.Add(this.headerPanel);
         this.Controls.Add(this.dgvVehiculos);
-        this.Controls.Add(this.btnNuevo);
-        this.Controls.Add(this.btnEditar);
-        this.Controls.Add(this.btnEliminar);
-        this.Controls.Add(this.btnActualizar);
+        this.Controls.Add(this.pnlAcciones);
         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
         this.Name = "FormVehiculoList";
         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

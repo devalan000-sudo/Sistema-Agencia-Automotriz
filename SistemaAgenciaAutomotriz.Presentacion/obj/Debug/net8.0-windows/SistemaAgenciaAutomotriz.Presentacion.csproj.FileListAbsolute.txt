@@ -130,3 +130,5 @@ c:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Pr
 c:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Presentacion\bin\Debug\net8.0-windows\RBush.dll
 c:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Presentacion\bin\Debug\net8.0-windows\SixLabors.Fonts.dll
 c:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Presentacion\bin\Debug\net8.0-windows\System.IO.Packaging.dll
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Presentacion\obj\Debug\net8.0-windows\SistemaAgenciaAutomotriz.Presentacion.sourcelink.json
+C:\Users\Alanl\source\repos\SistemaAgenciaAutomotriz\SistemaAgenciaAutomotriz.Presentacion\obj\Debug\net8.0-windows\SistemaAgenciaAutomotriz.Presentacion.Formularios.FormVenta.resources
